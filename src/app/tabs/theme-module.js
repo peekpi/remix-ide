@@ -39,7 +39,7 @@ export class ThemeModule extends Plugin {
     }
     this.themes = themes.reduce((acc, theme) => ({ ...acc, [theme.name]: theme }), {})
     const theme = (new QueryParams()).get().theme
-    this.active = theme || this._deps.config.get('settings/theme') || 'Dark'
+    this.active = theme || this._deps.config.get('settings/theme') || 'Light'
     this.forced = theme !== undefined
   }
 
