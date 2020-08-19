@@ -74,6 +74,7 @@
     "vm-browserify": "0.0.4",
     "watchify": "^3.9.0",
     "web3": "1.2.4",
+    "web3-eth-personal": "1.2.11",
     "webworkify": "^1.2.1",
     "yo-yo": "^1.2.2",
     "yo-yoify": "^3.7.3"
@@ -200,7 +201,7 @@
     "test": "csslint && standard && node test/index.js",
     "test-browser": "npm-run-all -lpr selenium downloadsolc_root make-mock-compiler serve browsertest",
     "watch": "watchify src/index.js -dv -p browserify-reload -o build/app.js --exclude solc",
-    "reinstall": "rm ./node-modules/ -rf; rm package-lock.json; rm ./build/ -rf; npm install; npm run build",
+    "reinstall": "rm -rf ./node-modules/; rm package-lock.json; rm -rf ./build/; cnpm install && npm run setupremix && npm run build",
     "ganache-cli": "npx ganache-cli"
   }
 }
