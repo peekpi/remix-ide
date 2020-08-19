@@ -247,7 +247,7 @@ contract HRC20 {
     // Public variables of the token
     string public name;
     string public symbol;
-    uint8 public decimals = 18;
+    uint8 public decimals;
     // 18 decimals is the strongly suggested default, avoid changing it
     uint256 public totalSupply;
 
@@ -270,10 +270,12 @@ contract HRC20 {
      * Initializes contract with initial supply tokens to the creator of the contract
      */
     constructor(
-        uint256 initialSupply,
         string memory tokenName,
-        string memory tokenSymbol
+        string memory tokenSymbol,
+        uint256 initialSupply,
+        uint8 _decimals
     ) public {
+        decimals = _decimals;
         totalSupply = initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
         balanceOf[msg.sender] = totalSupply;                // Give the creator all initial tokens
         name = tokenName;                                   // Set the name for display purposes
