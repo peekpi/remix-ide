@@ -111,16 +111,42 @@ class Terminal extends Plugin {
     this.on('scriptRunner', 'error', (msg) => {
       this.commands['error'].apply(this.commands, msg.data)
     })
+
+    this.on('harmony', 'log', (msg) => {
+      this.logAny('log', msg.data);
+    })
+    this.on('harmony', 'info', (msg) => {
+      this.logAny('info', msg.data);
+    })
+    this.on('harmony', 'warn', (msg) => {
+      this.logAny('warn', msg.data);
+    })
+    this.on('harmony', 'error', (msg) => {
+      this.logAny('error', msg.data);
+    })
+    this.on('harmony', 'html', (msg) => {
+      this.logAny('html', yo([msg.data]));
+    })
   }
   onDeactivation () {
     this.off('scriptRunner', 'log')
     this.off('scriptRunner', 'info')
     this.off('scriptRunner', 'warn')
     this.off('scriptRunner', 'error')
+
+    this.off('harmony', 'log')
+    this.off('harmony', 'info')
+    this.off('harmony', 'warn')
+    this.off('harmony', 'error')
+    this.off('harmony', 'html')
   }
   logHtml (html) {
     var command = this.commands['html']
     if (typeof command === 'function') command(html)
+  }
+  logAny (typ, data) {
+    var command = this.commands[typ]
+    if (typeof command === 'function') command(data)
   }
   focus () {
     if (this._view.input) this._view.input.focus()
