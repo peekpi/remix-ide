@@ -57,6 +57,8 @@ import FetchAndCompile from './app/compiler/compiler-sourceVerifier-fetchAndComp
 
 import migrateFileSystem from './migrateFileSystem'
 
+import { harmonyInit } from './harmonyPlugin';
+
 var css = csjs`
   html { box-sizing: border-box; }
   *, *:before, *:after { box-sizing: inherit; }
@@ -398,6 +400,9 @@ Please make a backup of your contracts and start using http://remix.ethereum.org
   await appManager.activatePlugin(['mainPanel', 'menuicons'])
   await appManager.activatePlugin(['sidePanel']) // activating  host plugin separately
   await appManager.activatePlugin(['home', 'hiddenPanel', 'pluginManager', 'fileExplorers', 'settings', 'contextualListener', 'scriptRunner', 'terminal', 'fetchAndCompile'])
+  //await appManager.activatePlugin(['home', 'hiddenPanel', 'pluginManager', 'fileExplorers', 'settings', 'contextualListener', 'terminal', 'fetchAndCompile'])
+
+  await harmonyInit(engine, appManager) // add by xiaopeng
 
   const queryParams = new QueryParams()
   const params = queryParams.get()
