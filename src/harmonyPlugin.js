@@ -1,9 +1,9 @@
 import { IframePlugin } from '@remixproject/engine'
 class ExtendPlugin extends IframePlugin {
-    constructor(url='http://localhost/plugin/index.html', location='sidePanel'){
+    constructor(url='plugin/index.html', location='sidePanel'){
         super({
             icon: 'assets/img/harmony.webp',
-            name: 'harmonyDeploy',
+            name: 'harmony',
             location,
             url,
             hash: 'local-harmony'
