@@ -201,7 +201,7 @@ module.exports = App
 
 async function run () {
   var self = this
-
+/*
   // check the origin and warn message
   if (window.location.hostname === 'yann300.github.io') {
     modalDialogCustom.alert('This UNSTABLE ALPHA branch of Remix has been moved to http://ethereum.github.io/remix-live-alpha.')
@@ -228,7 +228,7 @@ Please make a backup of your contracts and start using http://remix.ethereum.org
       return 'Are you sure you want to leave?'
     }
   }
-
+*/
   // APP_MANAGER
   const appManager = self.appManager
   const pluginLoader = appManager.pluginLoader
