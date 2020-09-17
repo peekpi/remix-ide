@@ -51,13 +51,14 @@ import { Web3ProviderModule } from './app/tabs/web3-provider'
 import { SidePanel } from './app/components/side-panel'
 import { HiddenPanel } from './app/components/hidden-panel'
 import { VerticalIcons } from './app/components/vertical-icons'
-import { LandingPage } from './app/ui/landing-page/landing-page'
+//import { LandingPage } from './app/ui/landing-page/landing-page'
 import { MainPanel } from './app/components/main-panel'
 import FetchAndCompile from './app/compiler/compiler-sourceVerifier-fetchAndCompile'
 
 import migrateFileSystem from './migrateFileSystem'
 
 import { harmonyInit } from './harmonyPlugin';
+import { HomePlugin } from './harmonyHome.js';
 
 var css = csjs`
   html { box-sizing: border-box; }
@@ -324,7 +325,8 @@ Please make a backup of your contracts and start using http://remix.ethereum.org
 
   // those views depend on app_manager
   const menuicons = new VerticalIcons(appManager)
-  const landingPage = new LandingPage(appManager, menuicons)
+  //const landingPage = new LandingPage(appManager, menuicons)
+  const landingPage = new HomePlugin()
   const sidePanel = new SidePanel(appManager, menuicons)
   const hiddenPanel = new HiddenPanel()
   const pluginManagerComponent = new PluginManagerComponent(appManager, engine)
@@ -391,7 +393,7 @@ Please make a backup of your contracts and start using http://remix.ethereum.org
   ])
 
   try {
-    engine.register(await appManager.registeredPlugins())
+    //engine.register(await appManager.registeredPlugins())
   } catch (e) {
     console.log('couldn\'t register iframe plugins', e.message)
   }
@@ -399,8 +401,8 @@ Please make a backup of your contracts and start using http://remix.ethereum.org
   await appManager.activatePlugin(['contentImport', 'theme', 'editor', 'fileManager', 'compilerMetadata', 'compilerArtefacts', 'network', 'web3Provider', 'offsetToLineColumnConverter'])
   await appManager.activatePlugin(['mainPanel', 'menuicons'])
   await appManager.activatePlugin(['sidePanel']) // activating  host plugin separately
-  await appManager.activatePlugin(['home', 'hiddenPanel', 'pluginManager', 'fileExplorers', 'settings', 'contextualListener', 'scriptRunner', 'terminal', 'fetchAndCompile'])
-  //await appManager.activatePlugin(['home', 'hiddenPanel', 'pluginManager', 'fileExplorers', 'settings', 'contextualListener', 'terminal', 'fetchAndCompile'])
+  //await appManager.activatePlugin(['home', 'hiddenPanel', 'pluginManager', 'fileExplorers', 'settings', 'contextualListener', 'scriptRunner', 'terminal', 'fetchAndCompile'])
+  await appManager.activatePlugin(['home', 'hiddenPanel', 'fileExplorers', 'settings', 'contextualListener', 'terminal', 'fetchAndCompile'])
 
   await harmonyInit(engine, appManager) // add by xiaopeng
 
@@ -417,8 +419,9 @@ Please make a backup of your contracts and start using http://remix.ethereum.org
   } else {
     // activate solidity plugin
     appManager.ensureActivated('solidity')
-    appManager.ensureActivated('udapp')
+    //appManager.ensureActivated('udapp')
   }
+  appManager.ensureActivated('solidity')
 
   // Load and start the service who manager layout and frame
   const framingService = new FramingService(sidePanel, menuicons, mainview, this._components.resizeFeature)
