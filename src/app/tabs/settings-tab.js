@@ -94,7 +94,8 @@ module.exports = class SettingsTab extends ViewPlugin {
     <div class="${css.info} card">
       <div class="card-body">
       <h6 class="${css.title} card-title">Have a question?</h6>
-      <button class="btn btn-primary sm-1" data-id="settingsTabGitterChannelButton" onclick="${() => { window.open('https://gitter.im/ethereum/remix') }}">Gitter Channel</button>
+      <button class="btn btn-primary sm-1" data-id="settingsTabDiscordChannelButton" onclick="${() => { window.open('https://discord.com/invite/rdCmBpe') }}">Discord</button>
+      <button class="btn btn-primary sm-1" data-id="settingsTabTelegramChannelButton" style="margin-left:1em" onclick="${() => { window.open('https://t.me/harmony_one') }}">Telegram</button>
       </div>
     </div>`
 
@@ -144,13 +145,20 @@ module.exports = class SettingsTab extends ViewPlugin {
             ${this._view.themesCheckBoxes}
         </div>
       </div>`
-    this._view.el = yo`
-      <div class="${css.settingsTabView}" id="settingsView" data-id="settingsTabSettingsView">
-        ${this._view.config.homePage}
-        ${this._view.config.general}
-        ${this._view.gistToken}
-        ${this._view.config.themes}
-      </div>`
+      /*
+      this._view.el = yo`
+        <div class="${css.settingsTabView}" id="settingsView" data-id="settingsTabSettingsView">
+          ${this._view.config.homePage}
+          ${this._view.config.general}
+          ${this._view.gistToken}
+          ${this._view.config.themes}
+        </div>`*/
+      this._view.el = yo`
+        <div class="${css.settingsTabView}" id="settingsView" data-id="settingsTabSettingsView">
+          ${this._view.config.homePage}
+          ${this._view.gistToken}
+          ${this._view.config.themes}
+        </div>`
 
     function onchangeGenerateContractMetadata (event) {
       self.config.set('settings/generate-contract-metadata', !self.config.get('settings/generate-contract-metadata'))
