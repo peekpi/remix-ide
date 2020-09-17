@@ -188,6 +188,18 @@ class Terminal extends Plugin {
       data-id="terminalInputSearch">
     </input>`
     self._view.bar = yo`
+    <div class="${css.bar}">
+      ${self._view.dragbar}
+      <div class="${css.menu} border-top border-dark bg-light" data-id="terminalToggleMenu">
+        ${self._view.icon}
+        <div class="mx-2" id="clearConsole" data-id="terminalClearConsole" onclick=${clear}>
+          <i class="fas fa-ban" aria-hidden="true" title="Clear console"
+          onmouseenter=${hover} onmouseleave=${hover}></i>
+        </div>
+      </div>
+    </div>`
+/*
+    self._view.bar = yo`
       <div class="${css.bar}">
         ${self._view.dragbar}
         <div class="${css.menu} border-top border-dark bg-light" data-id="terminalToggleMenu">
@@ -221,6 +233,7 @@ class Terminal extends Plugin {
         </div>
       </div>
     `
+*/
     self._view.term = yo`
       <div class="${css.terminal_container}" tabindex="-1" data-id="terminalContainer" onscroll=${throttle(reattach, 10)} onkeydown=${focusinput}>
         ${self._components.autoCompletePopup.render()}
@@ -475,7 +488,7 @@ class Terminal extends Plugin {
     self._cmdHistory = []
     self._cmdIndex = -1
     self._cmdTemp = ''
-
+/*
     var intro = yo`
       <div><div> - Welcome to Remix ${packageV.version} - </div><br>
       <div>You can use this terminal for: </div>
@@ -494,7 +507,8 @@ class Terminal extends Plugin {
       </ul>
       </div>
     `
-
+*/
+    var intro = yo`<div> - Welcome to Harmony - </div>`
     self._shell('remix.help()', self.commands, () => {})
     self.commands.html(intro)
 
