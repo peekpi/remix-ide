@@ -508,7 +508,7 @@ class Terminal extends Plugin {
       </div>
     `
 */
-    var intro = yo`<div> - Welcome to Harmony - </div>`
+    var intro = yo`<div> - Welcome to OneIDE - </div>`
     self._shell('remix.help()', self.commands, () => {})
     self.commands.html(intro)
 

@@ -131,7 +131,7 @@ class App {
     <div class=${css.centered}>
       ${basicLogo()}
       <div class="info-secondary" style="text-align:center">
-        REMIX IDE
+        ONE IDE
       </div>
       </div>
     `
